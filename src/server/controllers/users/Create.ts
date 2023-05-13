@@ -6,7 +6,7 @@ import { User } from "../../models";
 
 import * as yup from "yup";
 
-interface IBodyProps extends Omit<User, "id"> {}
+interface IBodyProps extends Omit<User, "id" | "createdAt" | "updatedAt"> {}
 
 export const createUserValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(
@@ -14,6 +14,7 @@ export const createUserValidation = validation((getSchema) => ({
       name: yup.string().required(),
       phone_number: yup.string().required(),
       email: yup.string().email().required().min(6),
+      has_property: yup.boolean().default(false),
       password: yup.string().required().min(6),
     })
   ),

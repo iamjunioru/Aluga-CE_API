@@ -2,12 +2,7 @@ import bcrypt from 'bcrypt';
 import { db } from "../../utils/db.server";
 import { User } from "../../models";
 
-interface UserResponse extends User {
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface UserResponseCreate extends Omit<UserResponse, 
+interface UserResponseCreate extends Omit<User, 
   "password"
 > {}
 
@@ -51,6 +46,7 @@ export const create = async (user: User): Promise<ResponseCreate> => {
       phone_number: result.phone_number,
       createdAt: result.createdAt,
       updatedAt: result.updatedAt,
+      has_property: result.has_property,
     },
 };
 };

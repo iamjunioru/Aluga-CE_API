@@ -2,12 +2,7 @@ import bcrypt from 'bcrypt';
 import { db } from "../../utils/db.server";
 import { User } from "../../models";
 
-interface UserResponse extends User {
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface UserResponseWithoutId extends Omit<UserResponse, "id" | "password"> {}
+interface UserResponseWithoutId extends Omit<User, "id" | "password"> {}
 
 interface ResponseUpdateById {
   user: UserResponseWithoutId;
@@ -15,7 +10,7 @@ interface ResponseUpdateById {
 
 export const updateById = async (
   id: string,
-  user: UserResponse
+  user: User
 ): Promise<ResponseUpdateById> => {
   
   const hashPassword = await bcrypt.hash(user.password, 10);
@@ -29,6 +24,7 @@ export const updateById = async (
       email: user.email,
       phone_number: user.phone_number,
       password: hashPassword,
+      has_property: user.has_property,
     },
   });
 
@@ -41,6 +37,7 @@ export const updateById = async (
       name: result.name,
       email: result.email,
       phone_number: result.phone_number,
+      has_property: result.has_property,
       createdAt: result.createdAt,
       updatedAt: result.updatedAt,
     },

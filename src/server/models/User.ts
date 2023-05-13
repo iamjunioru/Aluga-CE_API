@@ -4,4 +4,7 @@ export interface User {
   name: string;
   password: string;
   phone_number: string;
+  has_property?: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }

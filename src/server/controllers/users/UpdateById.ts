@@ -6,7 +6,10 @@ import { validation } from "./../../shared/middlewares";
 import { User } from "../../models";
 import { UsersProvider } from "../../providers/users";
 
-interface IBodyProps extends Omit<User, "id"> {}
+interface IBodyProps extends Omit<User, "id"
+  | "createdAt"
+  | "updatedAt"
+> {}
 
 interface IParamProps {
   id: string;
@@ -18,6 +21,7 @@ export const updateByIdValidation = validation((getSchema) => ({
       name: yup.string().required(),
       email: yup.string().email().required().min(6),
       password: yup.string().required().min(6),
+      has_property: yup.boolean().default(false),
       phone_number: yup.string().required(),
     })
   ),

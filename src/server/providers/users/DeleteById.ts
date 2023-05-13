@@ -1,12 +1,7 @@
 import { db } from "../../utils/db.server";
 import { User } from "../../models";
 
-interface UserResponse extends User {
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface UserResponseWithoutPassword extends Omit<UserResponse, "password"> {}
+interface UserResponseWithoutPassword extends Omit<User, "password"> {}
 
 interface ResponseDeleteById {
   user: UserResponseWithoutPassword;

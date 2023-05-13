@@ -1,12 +1,7 @@
 import { db } from "../../utils/db.server";
 import { User } from "../../models";
 
-interface UserResponse extends User {
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-interface UserResponseWithoutPassword extends Omit<UserResponse, "password"> {}
+interface UserResponseWithoutPassword extends Omit<User, "password"> {}
 
 interface ResponseGetById {
   user: UserResponseWithoutPassword;
@@ -22,6 +17,7 @@ export const getById = async (id: string): Promise<ResponseGetById> => {
       name: true,
       email: true,
       phone_number: true,
+      has_property: true,
       createdAt: true,
       updatedAt: true,
     },
