@@ -34,7 +34,7 @@ router.post(
 
 // update user by id
 router.put(
-  "/users/:id",
+  "/user/:id",
   ensureAuthenticated,
   UsersController.updateByIdValidation,
   UsersController.updateById
@@ -42,7 +42,7 @@ router.put(
 
 // delete user by id
 router.delete(
-  "/users/:id",
+  "/user/:id",
   ensureAuthenticated, 
   UsersController.deleteByIdValidation,
   UsersController.deleteById

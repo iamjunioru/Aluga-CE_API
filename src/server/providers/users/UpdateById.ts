@@ -17,6 +17,7 @@ export const updateById = async (
   id: number,
   user: UserResponse
 ): Promise<ResponseUpdateById> => {
+  
   const hashPassword = await bcrypt.hash(user.password, 10);
 
   const result = await db.user.update({

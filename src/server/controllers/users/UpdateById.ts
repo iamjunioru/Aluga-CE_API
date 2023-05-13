@@ -5,7 +5,6 @@ import * as yup from "yup";
 import { validation } from "./../../shared/middlewares";
 import { User } from "../../models";
 import { UsersProvider } from "../../providers/users";
-import { Prisma } from "@prisma/client";
 
 interface IBodyProps extends Omit<User, "id"> {}
 
@@ -53,13 +52,11 @@ export const updateById = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (error: any) {
-    if (error instanceof Prisma.PrismaClientValidationError) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        errors: {
-          message: error.message || "Erro ao atualizar usuário.",
-          default: "Erro ao atualizar usuário.",
-        },
-      });
-    }
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+      errors: {
+        message: error.message || "Erro ao atualizar usuário.",
+        default: "Erro ao atualizar usuário.",
+      },
+    });
   }
 };
