@@ -6,13 +6,13 @@ import { validation } from "./../../shared/middlewares";
 import { Prisma } from "@prisma/client";
 
 interface IParamProps {
-  id: number;
+  id: string;
 }
 
 export const deleteByIdValidation = validation((getSchema) => ({
   params: getSchema<IParamProps>(
     yup.object().shape({
-      id: yup.number().required(),
+      id: yup.string().required(),
     })
   ),
 }));
@@ -31,7 +31,7 @@ export const deleteById = async (
       });
     }
 
-    const result = await UsersProvider.deleteById(Number(id));
+    const result = await UsersProvider.deleteById(id);
   
     if (!result) {
       return res.status(StatusCodes.NOT_FOUND).json({

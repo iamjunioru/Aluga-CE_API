@@ -37,7 +37,7 @@ export const getAll = async (
       });
 
     return res.status(StatusCodes.OK).json({
-      message: "Usuários encontrados com sucesso.",
+      message: result.total > 0 ? "Usuários encontrados com sucesso." : "Nenhum usuário encontrado.",
       data: result.users,
       total: result.total,
     });

@@ -14,7 +14,7 @@ interface ResponseUpdateById {
 }
 
 export const updateById = async (
-  id: number,
+  id: string,
   user: UserResponse
 ): Promise<ResponseUpdateById> => {
   

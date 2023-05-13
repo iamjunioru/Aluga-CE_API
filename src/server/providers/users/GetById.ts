@@ -12,7 +12,7 @@ interface ResponseGetById {
   user: UserResponseWithoutPassword;
 }
 
-export const getById = async (id: number): Promise<ResponseGetById> => {
+export const getById = async (id: string): Promise<ResponseGetById> => {
   const user = await db.user.findUnique({
     where: {
       id: id,

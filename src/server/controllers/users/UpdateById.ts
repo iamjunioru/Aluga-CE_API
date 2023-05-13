@@ -9,7 +9,7 @@ import { UsersProvider } from "../../providers/users";
 interface IBodyProps extends Omit<User, "id"> {}
 
 interface IParamProps {
-  id: number;
+  id: string;
 }
 
 export const updateByIdValidation = validation((getSchema) => ({
@@ -23,7 +23,7 @@ export const updateByIdValidation = validation((getSchema) => ({
   ),
   params: getSchema<IParamProps>(
     yup.object().shape({
-      id: yup.number().required(),
+      id: yup.string().required(),
     })
   ),
 }));
@@ -38,7 +38,7 @@ export const updateById = async (req: Request, res: Response) => {
         },
       });
     }
-    const result = await UsersProvider.updateById(Number(id), req.body);
+    const result = await UsersProvider.updateById(id, req.body);
 
     if (!result)
       return res.status(StatusCodes.NOT_FOUND).json({

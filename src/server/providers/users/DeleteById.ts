@@ -12,7 +12,7 @@ interface ResponseDeleteById {
   user: UserResponseWithoutPassword;
 }
 
-export const deleteById = async (id: number): Promise<ResponseDeleteById> => {
+export const deleteById = async (id: string): Promise<ResponseDeleteById> => {
   const user = await db.user.delete({
     where: {
       id: id,

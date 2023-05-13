@@ -6,13 +6,13 @@ import * as yup from "yup";
 import { validation } from "./../../shared/middlewares";
 
 interface IParamProps {
-  id: number;
+  id: string;
 }
 
 export const getByIdValidation = validation((getSchema) => ({
   params: getSchema<IParamProps>(
     yup.object().shape({
-      id: yup.number().required(),
+      id: yup.string().required(),
     })
   ),
 }));
@@ -29,7 +29,7 @@ export const getById = async (req: Request, res: Response) => {
       });
     }
 
-    const result = await UsersProvider.getById(Number(id));
+    const result = await UsersProvider.getById(id);
 
     if (!result)
       return res.status(StatusCodes.NOT_FOUND).json({
