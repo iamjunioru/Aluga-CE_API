@@ -51,15 +51,15 @@ model Property {
   total_occupancy      Int
   total_bedrooms       Int
   total_bathrooms      Int
-  has_wifi             Boolean?
-  has_tv               Boolean?
-  has_air_conditioning Boolean?
-  has_washing_machine  Boolean?
-  has_kitchen          Boolean?
-  has_suite            Boolean?
-  has_parking_space    Boolean?
-  has_pool             Boolean?
-  has_beach_view       Boolean?
+  has_wifi             Boolean @default(false)
+  has_tv               Boolean @default(false)
+  has_air_conditioning Boolean @default(false)
+  has_washing_machine  Boolean @default(false)
+  has_kitchen          Boolean @default(false)
+  has_suite            Boolean @default(false)
+  has_parking_space    Boolean @default(false)
+  has_pool             Boolean @default(false)
+  has_beach_view       Boolean @default(false)
   Comments             Reviews[]
   Images               Image[]
   user                 User      @relation(fields: [user_Id], references: [id])

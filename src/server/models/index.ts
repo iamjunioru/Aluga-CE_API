@@ -1,3 +1,4 @@
 export * from './User';
-// export * from './Cidade';
-// export * from './Pessoa';
+export * from './Property';
+export * from './Review';
+export * from './Image';

@@ -1,6 +1,6 @@
 import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
-import { UsersController, AuthController } from "../controllers";
+import { UsersController } from "../controllers";
 import { ensureAuthenticated } from "./../shared/middlewares";
 // import { upload } from "./../shared/middlewares";
 
