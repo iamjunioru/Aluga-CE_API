@@ -29,9 +29,9 @@ model Reviews {
   id          String   @id @default(uuid())
   rating      Int
   comment     String
-  user        User     @relation(fields: [user_Id], references: [id])
+  user        User     @relation(fields: [user_Id], references: [id], onDelete: Cascade)
   user_Id     String
-  property    Property @relation(fields: [property_Id], references: [id])
+  property    Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
   property_Id String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -71,8 +71,8 @@ model Property {
 // create the image table, an image is associated with a property, and a property can have many images
 model Image {
   id          String   @id @default(uuid())
-  path        String
-  property    Property @relation(fields: [property_Id], references: [id])
+  path        String   @db.VarChar(255)
+  property    Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
   property_Id String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
