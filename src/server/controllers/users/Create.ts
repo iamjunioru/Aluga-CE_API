@@ -11,7 +11,7 @@ interface IBodyProps extends Omit<User, "id" | "createdAt" | "updatedAt"> {}
 export const createUserValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(
     yup.object().shape({
-      name: yup.string().required(),
+      name: yup.string().required().min(3),
       phone_number: yup.string().required(),
       email: yup.string().email().required().min(6),
       has_property: yup.boolean().default(false),
@@ -38,7 +38,7 @@ export const create = async (req: Request<{}, {}, User>, res: Response) => {
   } catch (error: any) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       errors: {
-        message: error.message || "Erro ao criar usuário.",
+        message: error.message === "data must be a string or Buffer and salt must either be a salt string or a number of rounds" ? "Senha com formato inválido." : error.message,
         default: "Erro ao criar usuário.",
       },
     });
