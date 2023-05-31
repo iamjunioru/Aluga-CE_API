@@ -60,6 +60,7 @@ export const signUp = async (req: Request, res: Response) => {
     }
 
   const userData = {
+    id: result.user.id,
     name: result.user.name,
     email: result.user.email,
     phone_number: result.user.phone_number,

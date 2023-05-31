@@ -64,6 +64,7 @@ export const signIn = async (req: Request, res: Response) => {
     }
 
     const userData = {
+      id: userExists.id,
       name: userExists.name,
       email: userExists.email,
       phone_number: userExists.phone_number,
