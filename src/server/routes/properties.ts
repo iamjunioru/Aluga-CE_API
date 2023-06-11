@@ -17,6 +17,13 @@ propertyRouter.get(
   PropertiesController.getAll
 );
 
+// get property by id
+propertyRouter.get(
+  "/properties/:id",
+  PropertiesController.getByIdValidation,
+  PropertiesController.getById
+);
+
 // create property
 propertyRouter.post(
   "/properties",
