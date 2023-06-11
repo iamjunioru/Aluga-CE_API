@@ -32,4 +32,12 @@ propertyRouter.post(
   PropertiesController.create
 );
 
+// delete property by id
+propertyRouter.delete(
+  "/properties/:id",
+  ensureAuthenticated,
+  PropertiesController.deleteByIdValidation,
+  PropertiesController.deleteById
+);
+
 export { propertyRouter };
