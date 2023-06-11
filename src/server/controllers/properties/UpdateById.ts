@@ -1,13 +1,18 @@
-import { validation } from "./../../shared/middlewares";
 import { Request, Response } from "express";
 import { PropertiesProvider } from "../../providers/properties";
-import { Property } from "../../models";
-import StatusCodes from "http-status-codes";
+import { StatusCodes } from "http-status-codes";
 import * as yup from "yup";
+
+import { validation } from "./../../shared/middlewares";
+import { Property } from "../../models";
 
 interface IBodyProps extends Omit<Property, "id" | "createdAt" | "updatedAt"> {}
 
-export const createPropertyValidation = validation((getSchema) => ({
+interface IParamProps {
+  id: string;
+}
+
+export const updateByIdValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(
     yup.object().shape({
       inscription_number: yup.string().required(),
@@ -33,10 +38,23 @@ export const createPropertyValidation = validation((getSchema) => ({
       user_Id: yup.string().required(),
     })
   ),
+  params: getSchema<IParamProps>(
+    yup.object().shape({
+      id: yup.string().required(),
+    })
+  ),
 }));
 
-export const create = async (req: Request<{}, {}, Property>, res: Response) => {
+export const updateById = async (req: Request, res: Response) => {
   try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        errors: {
+          default: 'O parâmetro "id" precisa ser informado.',
+        },
+      });
+    }
     // verify if user_id exists
     const user = await PropertiesProvider.verifyUserExist(req.body.user_Id);
 
@@ -48,24 +66,25 @@ export const create = async (req: Request<{}, {}, Property>, res: Response) => {
       });
     }
 
-    const result = await PropertiesProvider.create(req.body);
+    const result = await PropertiesProvider.updateById(id, req.body);
 
-    if (!result)
+    if (!result) {
       return res.status(StatusCodes.NOT_FOUND).json({
         errors: {
-          default: "Erro ao criar propriedade.",
+          default: "Propriedade não encontrada.",
         },
       });
+    }
 
-    return res.status(StatusCodes.CREATED).json({
-      message: "Propriedade criada com sucesso.",
-      data: result.property,
+    return res.status(StatusCodes.OK).json({
+      message: "Propriedade atualizada com sucesso.",
+      data: result,
     });
   } catch (error: any) {
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
       errors: {
-        message: error.message,
-        default: "Erro ao criar propriedade.",
+        default: error.message || "Erro ao atualizar propriedade.",
+        message: "Erro ao atualizar propriedade.",
       },
     });
   }

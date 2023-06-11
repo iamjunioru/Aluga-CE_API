@@ -32,6 +32,14 @@ propertyRouter.post(
   PropertiesController.create
 );
 
+// update property by id
+propertyRouter.put(
+  "/properties/:id",
+  ensureAuthenticated,
+  PropertiesController.updateByIdValidation,
+  PropertiesController.updateById
+);
+
 // delete property by id
 propertyRouter.delete(
   "/properties/:id",
