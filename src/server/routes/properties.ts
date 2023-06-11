@@ -17,4 +17,12 @@ propertyRouter.get(
   PropertiesController.getAll
 );
 
+// create property
+propertyRouter.post(
+  "/properties",
+  ensureAuthenticated,
+  PropertiesController.createPropertyValidation,
+  PropertiesController.create
+);
+
 export { propertyRouter };
