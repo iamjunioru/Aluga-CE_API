@@ -16,12 +16,27 @@ reviewRouter.get(
   ReviewController.getAllFromProperty
 );
 
+// get all reviews from a user
+reviewRouter.get(
+  "/reviews/user/:userId",
+  ReviewController.getAllFromUserValidation,
+  ReviewController.getAllFromUser
+);
+
 // create a review
 reviewRouter.post(
   "/reviews",
   ensureAuthenticated,
   ReviewController.createReviewValidation,
   ReviewController.create
+);
+
+// update a review
+reviewRouter.put(
+  "/reviews/:id",
+  ensureAuthenticated,
+  ReviewController.updateByIdValidation,
+  ReviewController.updateById
 );
 
 // delete a review

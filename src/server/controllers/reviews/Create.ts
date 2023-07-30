@@ -13,7 +13,7 @@ export const createReviewValidation = validation((getSchema) => ({
     yup.object().shape({
       user_Id: yup.string().required(),
       property_Id: yup.string().required(),
-      rating: yup.number().required(),
+      rating: yup.number().required().max(5).min(1),
       comment: yup.string().required(),
     })
   ),
