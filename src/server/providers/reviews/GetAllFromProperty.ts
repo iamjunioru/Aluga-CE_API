@@ -15,6 +15,9 @@ export const getAllFromProperty = async (
     where: {
       property_Id: id,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
     take: Number(limit),
     skip: offset,
   });
@@ -29,6 +32,7 @@ export const getAllFromProperty = async (
     reviews: reviews.map((review) => ({
       id: review.id,
       user_Id: review.user_Id,
+      user_name: review.user_name,
       property_Id: review.property_Id,
       rating: review.rating,
       comment: review.comment,

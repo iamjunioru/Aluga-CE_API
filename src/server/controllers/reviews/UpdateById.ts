@@ -16,6 +16,7 @@ export const updateByIdValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(
     yup.object().shape({
       user_Id: yup.string().required(),
+      user_name: yup.string().required(),
       property_Id: yup.string().required(),
       rating: yup.number().required().max(5).min(1),
       comment: yup.string().required(),

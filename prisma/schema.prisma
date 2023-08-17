@@ -28,9 +28,10 @@ model User {
 model Reviews {
   id          String   @id @default(uuid())
   rating      Int
-  comment     String
+  comment     String   @db.Text
   user        User     @relation(fields: [user_Id], references: [id], onDelete: Cascade)
   user_Id     String
+  user_name   String   @db.VarChar(255)
   property    Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
   property_Id String
   createdAt   DateTime @default(now())
@@ -42,7 +43,7 @@ model Property {
   id                   String    @id @default(uuid())
   inscription_number   String    @unique
   type                 String
-  description          String
+  description          String    @db.Text
   rent_price           String
   cep                  String
   neighborhood         String

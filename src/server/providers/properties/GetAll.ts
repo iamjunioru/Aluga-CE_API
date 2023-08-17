@@ -8,8 +8,64 @@ interface ResponseGetAll {
 
 export const getAll = async (
   limit: number,
-  offset: number
+  offset: number,
+  {
+    propertyType,
+    minRentPrice,
+    maxRentPrice,
+    totalOccupancy,
+    totalBedrooms,
+    totalBathrooms,
+    hasWifi,
+    hasTv,
+    hasAirConditioning,
+    hasWashingMachine,
+    hasKitchen,
+    hasSuite,
+    hasParkingSpace,
+    hasPool,
+    hasBeachView,
+  }: {
+    propertyType?: string;
+    minRentPrice?: string;
+    maxRentPrice?: string;
+    totalOccupancy?: number;
+    totalBedrooms?: number;
+    totalBathrooms?: number;
+    hasWifi?: boolean;
+    hasTv?: boolean;
+    hasAirConditioning?: boolean;
+    hasWashingMachine?: boolean;
+    hasKitchen?: boolean;
+    hasSuite?: boolean;
+    hasParkingSpace?: boolean;
+    hasPool?: boolean;
+    hasBeachView?: boolean;
+  }
 ): Promise<ResponseGetAll> => {
+  const where: any = {};
+
+  if (propertyType) where.type = propertyType;
+  if (minRentPrice !== undefined) where.rent_price = { gte: minRentPrice };
+  if (maxRentPrice !== undefined) {
+    if (where.rent_price === undefined) where.rent_price = {};
+    where.rent_price.lte = maxRentPrice;
+  }
+  if (totalOccupancy !== undefined) where.total_occupancy = Number(totalOccupancy);
+  if (totalBedrooms !== undefined) where.total_bedrooms = Number(totalBedrooms);
+  if (totalBathrooms !== undefined) where.total_bathrooms = Number(totalBathrooms);
+  if (hasWifi !== undefined) where.has_wifi = Boolean(hasWifi);
+  if (hasTv !== undefined) where.has_tv = Boolean(hasTv);
+  if (hasAirConditioning !== undefined) where.has_air_conditioning = Boolean(hasAirConditioning);
+  if (hasWashingMachine !== undefined) where.has_washing_machine = Boolean(hasWashingMachine);
+  if (hasKitchen !== undefined) where.has_kitchen = Boolean(hasKitchen);
+  if (hasSuite !== undefined) where.has_suite = Boolean(hasSuite);
+  if (hasParkingSpace !== undefined) where.has_parking_space = Boolean(hasParkingSpace);
+  if (hasPool !== undefined) where.has_pool = Boolean(hasPool);
+  if (hasBeachView !== undefined) where.has_beach_view = Boolean(hasBeachView);
+
+  console.log(where);
+
   const properties = await db.property.findMany({
     take: Number(limit),
     skip: offset,
@@ -39,6 +95,7 @@ export const getAll = async (
       createdAt: true,
       updatedAt: true,
     },
+    where
   });
 
   const total = await db.property.count();
@@ -46,5 +103,5 @@ export const getAll = async (
   return {
     properties,
     total,
-  }
+  };
 };

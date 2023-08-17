@@ -1,12 +1,13 @@
 import { validation } from "../../shared/middlewares";
 import { Request, Response } from "express";
 import { ReviewsProvider } from "../../providers/reviews";
+import { UsersProvider } from "../../providers/users";
 import { PropertiesProvider } from "../../providers/properties";
 import StatusCodes from "http-status-codes";
 import { Review } from "../../models";
 import * as yup from "yup";
 
-interface IBodyProps extends Omit<Review, "id" | "createdAt" | "updatedAt"> {}
+interface IBodyProps extends Omit<Review, "id" | "createdAt" | "updatedAt" | "user_name"> {}
 
 export const createReviewValidation = validation((getSchema) => ({
   body: getSchema<IBodyProps>(
@@ -43,7 +44,23 @@ export const create = async (req: Request<{}, {}, Review>, res: Response) => {
       });
     }
 
-    const result = await ReviewsProvider.create(req.body);
+    // get User Info
+    const user_info = await UsersProvider.getById(req.body.user_Id);
+
+    if (!user_info) {
+      return res.status(StatusCodes.NOT_FOUND).json({
+        errors: {
+          default: `Usuário com o id ${req.body.user_Id} não encontrado.`
+        },
+      });
+    }
+
+    const result = await ReviewsProvider.create(
+      {
+        ...req.body,
+        user_name: user_info.user.name,
+      }
+    );
 
     if (!result)
       return res.status(StatusCodes.NOT_FOUND).json({
