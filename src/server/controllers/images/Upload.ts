@@ -23,11 +23,15 @@ const uploadImage = async (req: Request, res: Response) => {
     const property_Id = req.query['property_Id'];
 
     if (typeof property_Id !== 'string') {
-      return res.status(StatusCodes.BAD_REQUEST).send("O parâmetro 'property_Id' precisa ser informado.");
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: "O parâmetro 'property_Id' precisa ser informado.",
+      });
     }
 
-    if (!files) {
-      return res.status(StatusCodes.BAD_REQUEST).send("Nenhuma imagem foi enviada.");
+    if (!files || files.length === 0) {
+      return res.status(StatusCodes.BAD_REQUEST).json({
+        message: "Nenhuma imagem foi enviada.",
+      });
     }
 
     const images = await ImagesProvider.uploadImages(files as Express.Multer.File[], property_Id);

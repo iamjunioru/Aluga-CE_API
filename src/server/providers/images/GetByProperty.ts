@@ -36,7 +36,7 @@ export const getAllByProperty = async (id: string): Promise<ResponseGetById> => 
   });
 
   if (!imagesFromProperty) {
-    throw new Error(`Propriedade com o id ${id} não encontrada.`);
+    throw new Error(`Erro ao buscar imagens.`);
   }
 
   // formatar o path para o caminho completo da imagem

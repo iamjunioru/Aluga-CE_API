@@ -3,5 +3,5 @@ import * as getAllByProperty from "./GetByProperty";
 
 export const ImagesProvider = {
   ...uploadImages,
-  ...getAllByProperty,
+  ...getAllByProperty
 };

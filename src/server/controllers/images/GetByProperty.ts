@@ -36,7 +36,7 @@ export const getAllByProperty = async (req: Request, res: Response) => {
     if (!property) {
       return res.status(StatusCodes.NOT_FOUND).json({
         errors: {
-          default: `Propriedade com o id ${req.body.property_Id} não encontrada.`
+          default: `Propriedade com o id ${req.params.id} não encontrada.`
         },
       });
     }
