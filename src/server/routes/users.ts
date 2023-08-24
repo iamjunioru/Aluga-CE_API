@@ -2,24 +2,13 @@ import { Request, Response, Router } from "express";
 import { StatusCodes } from "http-status-codes";
 import { UsersController } from "../controllers";
 import { ensureAuthenticated } from "./../shared/middlewares";
-// import { upload } from "./../shared/middlewares";
+import { upload } from "./../shared/middlewares";
 
 const userRouter = Router();
 
 userRouter.get("/", (req: Request, res: Response) => {
   return res.status(StatusCodes.OK).send("OK");
 });
-
-// // upload image
-// userRouter.post(
-//   "/upload",
-//   ensureAuthenticated,
-//   upload,
-//   (req: Request, res: Response) => {
-//     console.log(req.files);
-//     return res.status(StatusCodes.OK).send("OK");
-//   }
-// );
 
 // get all users
 userRouter.get(

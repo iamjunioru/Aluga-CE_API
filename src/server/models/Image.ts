@@ -1,6 +1,6 @@
 export interface Image {
-  id:  string;
-  path:  string;
+  id:  String;
+  path:  String;
   property_Id: String;
   createdAt: Date;
   updatedAt: Date;

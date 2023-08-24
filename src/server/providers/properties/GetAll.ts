@@ -64,8 +64,6 @@ export const getAll = async (
   if (hasPool !== undefined) where.has_pool = Boolean(hasPool);
   if (hasBeachView !== undefined) where.has_beach_view = Boolean(hasBeachView);
 
-  console.log(where);
-
   const properties = await db.property.findMany({
     take: Number(limit),
     skip: offset,
