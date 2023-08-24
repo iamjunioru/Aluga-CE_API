@@ -1,21 +1,6 @@
 import { db } from "../../utils/db.server";
 import { Image } from "../../models";
-
-function formatPathToUploadsUrl(filePath: string, baseUrl: string): string {
-  const parts = filePath.split("\\");
-  const uploadsIndex = parts.findIndex(part => part === "uploads");
-  
-  if (uploadsIndex !== -1) {
-    const fileName = parts[parts.length - 1];
-    const formattedUrl = `${baseUrl}/uploads/${encodeURIComponent(fileName)}`;
-    return formattedUrl;
-  }
-  
-  return filePath;
-}
-
-const baseUrl = "http://localhost:8000"; // Substitua pela sua URL base
-
+import { formatPathToUploadsUrl } from "../../shared/services/formatImagePath";
 
 interface ResponseGetById {
   Image: Image[]
@@ -42,7 +27,7 @@ export const getAllByProperty = async (id: string): Promise<ResponseGetById> => 
   // formatar o path para o caminho completo da imagem
   const images = imagesFromProperty.map((image) => ({
     ...image,
-    path: formatPathToUploadsUrl(image.path, baseUrl),
+    path: formatPathToUploadsUrl(image.path),
   }));
 
   return {

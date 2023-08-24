@@ -1,5 +1,6 @@
 import { db } from "../../utils/db.server";
 import { Property } from "../../models";
+import { formatPathToUploadsUrl } from "../../shared/services/formatImagePath";
 
 interface ResponseGetAll {
   properties: Property[];
@@ -96,10 +97,40 @@ export const getAll = async (
     where
   });
 
+  const propertyIds = properties.map(property => property.id);
+
+const propertyImages = await db.image.findMany({
+  where: {
+    property_Id: {
+      in: propertyIds,
+    },
+  },
+  select: {
+    id: true,
+    path: true,
+    property_Id: true,
+    createdAt: true,
+    updatedAt: true,
+  },
+});
+
+const propertiesWithImages = properties.map(property => {
+  const imagesForProperty = propertyImages.filter(image => image.property_Id === property.id);
+  return {
+    ...property,
+    images: imagesForProperty.map(image => ({
+      ...image,
+      path: formatPathToUploadsUrl(image.path),
+    })),
+  };
+});
+
+  
+
   const total = await db.property.count();
 
   return {
-    properties,
+    properties: propertiesWithImages,
     total,
   };
 };
