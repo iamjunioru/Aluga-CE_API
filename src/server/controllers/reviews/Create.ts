@@ -58,7 +58,6 @@ export const create = async (req: Request<{}, {}, Review>, res: Response) => {
     const result = await ReviewsProvider.create(
       {
         ...req.body,
-        user_name: user_info.user.name,
       }
     );
 

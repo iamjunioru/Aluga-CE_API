@@ -10,7 +10,6 @@ export const create = async (review: Review, ): Promise<ResponseCreate> => {
     data: {
       id: review.id,
       user_Id: review.user_Id,
-      user_name: review.user_name,
       property_Id: review.property_Id,
       rating: review.rating,
       comment: review.comment,
@@ -25,7 +24,6 @@ export const create = async (review: Review, ): Promise<ResponseCreate> => {
     review: {
       id: result.id,
       user_Id: result.user_Id,
-      user_name: result.user_name,
       property_Id: result.property_Id,
       rating: result.rating,
       comment: result.comment,
