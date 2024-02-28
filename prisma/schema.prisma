@@ -6,75 +6,74 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "mongodb"
+  url = env("DATABASE_URL")
 }
 
-// create the user table
+// Create the user table
 model User {
-  id           String     @id @default(uuid())
-  email        String     @unique
-  name         String
-  password     String
+  id       String @id @default(uuid()) @map("_id")
+  email     String @unique
+  name      String
+  password  String
   phone_number String
-  has_property Boolean    @default(false)
-  property     Property[]
-  comment      Reviews[]
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  has_property Boolean @default(false)
+  property  Property[]
+  comment   Reviews[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-// create the comment table, the comment can be made by a user, and a user can make many comments, and a xommet is assicioated with a post, and a post can have many comments
+// Create the comment table
 model Reviews {
-  id          String   @id @default(uuid())
-  rating      Int
-  comment     String   @db.Text
-  user        User     @relation(fields: [user_Id], references: [id], onDelete: Cascade)
-  user_Id     String
-  user_name   String   @db.VarChar(255)
-  property    Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
+  id       String @id @default(uuid()) @map("_id")
+  rating   Int
+  comment   String
+  user     User   @relation(fields: [user_Id], references: [id], onDelete: Cascade)
+  user_Id  String
+  property Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
   property_Id String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-// create the property table, a property can have many comments, and a comment is associated with a property, and a property can have many images, and an image is associated with a property
+// Create the property table
 model Property {
-  id                   String    @id @default(uuid())
-  inscription_number   String    @unique
-  type                 String
-  description          String    @db.Text
-  rent_price           String
-  cep                  String
-  neighborhood         String
-  street_name          String
-  street_number        String
-  total_occupancy      Int
-  total_bedrooms       Int
-  total_bathrooms      Int
-  has_wifi             Boolean @default(false)
-  has_tv               Boolean @default(false)
+  id      String @id @default(uuid()) @map("_id")
+  inscription_number String @unique
+  type      String
+  description  String
+  rent_price   String
+  cep      String
+  neighborhood String
+  street_name  String
+  street_number String
+  total_occupancy Int
+  total_bedrooms  Int
+  total_bathrooms Int
+  has_wifi     Boolean @default(false)
+  has_tv     Boolean @default(false)
   has_air_conditioning Boolean @default(false)
-  has_washing_machine  Boolean @default(false)
-  has_kitchen          Boolean @default(false)
-  has_suite            Boolean @default(false)
-  has_parking_space    Boolean @default(false)
-  has_pool             Boolean @default(false)
-  has_beach_view       Boolean @default(false)
-  Comments             Reviews[]
-  Images               Image[]
-  user                 User      @relation(fields: [user_Id], references: [id])
-  user_Id              String
-  createdAt            DateTime  @default(now())
-  updatedAt            DateTime  @updatedAt
+  has_washing_machine Boolean @default(false)
+  has_kitchen    Boolean @default(false)
+  has_suite    Boolean @default(false)
+  has_parking_space  Boolean @default(false)
+  has_pool     Boolean @default(false)
+  has_beach_view   Boolean @default(false)
+  Comments     Reviews[]
+  Images     Image[]
+  user      User   @relation(fields: [user_Id], references: [id])
+  user_Id     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-// create the image table, an image is associated with a property, and a property can have many images
+// Create the image table
 model Image {
-  id          String   @id @default(uuid())
-  path        String   @db.VarChar(255)
-  property    Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
+  id       String @id @default(uuid()) @map("_id")
+  path     String
+  property Property @relation(fields: [property_Id], references: [id], onDelete: Cascade)
   property_Id String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
