@@ -13,6 +13,9 @@
     "routes": [
         {
             "src": "(.*)",
+            "dest": "public"}
+        {
+            "src": "(.*)",
             "dest": "src/index.ts"
         }
     ]
