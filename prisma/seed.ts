@@ -163,7 +163,7 @@ async function seedProperty(userData: string) {
       comment: "Comentário 2",
       rating: 5,
       property_Id: propertyBase.id,
-      user_name: "Marllon",
+      user_name: "Junior",
       user_Id: propertyBase.user_Id,
     },
   });
