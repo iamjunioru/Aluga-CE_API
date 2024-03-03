@@ -12,9 +12,9 @@
     ],
     "routes": [
         {
-            "src": "/uploads/(.*)",
-            "dest": "/public/$1"
-        },
+            "src": "(.*)",
+            "dest": "public/$1"
+        }
         {
             "src": "(.*)",
             "dest": "src/index.ts"
