@@ -128,11 +128,11 @@ async function seedProperty(userData: string) {
     data: {
       inscription_number: "9873987983535",
       type: "Casa",
-      description: "Casa com 3 quartos, 2 banheiros, 1 suíte, 1 vaga de garagem, piscina, vista para a praia, ar condicionado, TV, Wi-Fi, máquina de lavar roupa, cozinha equipada, acomoda 3 pessoas.",
+      description: "Casa com 3 quartos",
       rent_price: "500",
       cep: "12345678",
-      neighborhood: "Centro da Cidade",
-      street_name: "Rua Vicente Viana",  
+      neighborhood: "Centro",
+      street_name: "Rua",  
       street_number: "123",
       total_occupancy: 3,
       total_bedrooms: 3,
@@ -154,7 +154,7 @@ async function seedProperty(userData: string) {
       comment: "ótima casa, muito confortável e espaçosa!!!",
       rating: 3,
       property_Id: propertyBase.id,
-      user_name: "Júnior S.",
+      user_name: "Júnior",
       user_Id: propertyBase.user_Id,
     },
   });
@@ -163,7 +163,7 @@ async function seedProperty(userData: string) {
       comment: "Casa muito boa, pena que tem pouco espaço para estacionar.",
       rating: 5,
       property_Id: propertyBase.id,
-      user_name: "José M.",
+      user_name: "José",
       user_Id: propertyBase.user_Id,
     },
   });
