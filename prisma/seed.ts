@@ -114,7 +114,7 @@ import { db } from "../src/server/utils/db.server";
 async function seed() {
   const userData = await db.user.create({
     data: {
-      email: "marllon@gmail.com",
+      email: "junior@gmail.com",
       name: "Marllon",
       password: "123456",
       phone_number: "123456789",
@@ -163,7 +163,7 @@ async function seedProperty(userData: string) {
       comment: "Comentário 2",
       rating: 5,
       property_Id: propertyBase.id,
-      user_name: "Junior",
+      user_name: "Júnior",
       user_Id: propertyBase.user_Id,
     },
   });
