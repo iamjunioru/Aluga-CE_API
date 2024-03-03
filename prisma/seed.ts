@@ -114,7 +114,7 @@ import { db } from "../src/server/utils/db.server";
 async function seed() {
   const userData = await db.user.create({
     data: {
-      email: "junior@gmail.com",
+      email: "marllon@gmail.com",
       name: "Marllon",
       password: "123456",
       phone_number: "123456789",
@@ -128,11 +128,11 @@ async function seedProperty(userData: string) {
     data: {
       inscription_number: "9873987983535",
       type: "Casa",
-      description: "Casa com 3 quartos",
-      rent_price: "500",
-      cep: "12345678",
-      neighborhood: "Centro",
-      street_name: "Rua 1",
+      description: "Casa com 3 quartos, 2 banheiros, 1 suíte, 1 vaga de garagem, piscina e vista para a praia.",
+      rent_price: "R$120,00/dia",
+      cep: "63500-000",
+      neighborhood: "Iguatu",
+      street_name: "Área Rural de Iguatu",
       street_number: "123",
       total_occupancy: 3,
       total_bedrooms: 3,
@@ -151,19 +151,19 @@ async function seedProperty(userData: string) {
   });
   await db.reviews.create({
     data: {
-      comment: "Comentário 1",
+      comment: "Localização um pouco ruim, mas o lugar é ótimo.",
       rating: 4,
       property_Id: propertyBase.id,
-      user_name: "Marllon",
+      user_name: "José M.",
       user_Id: propertyBase.user_Id,
     },
   });
   await db.reviews.create({
     data: {
-      comment: "Comentário 2",
+      comment: "Lugar incrível, recomendo! 😊",
       rating: 5,
       property_Id: propertyBase.id,
-      user_name: "Júnior",
+      user_name: "Júnior S.",
       user_Id: propertyBase.user_Id,
     },
   });
@@ -175,7 +175,7 @@ async function seedProperty(userData: string) {
   });
   await db.image.create({
     data: {
-      path: "https://casa-caribe-do-nordeste-beberibe.ibooked.com.br/data/Photos/OriginalPhoto/10573/1057317/1057317757/Casa-Caribe-Do-Nordeste-Villa-Beberibe-Exterior.JPEG",
+      path: "https://cdn.dreamcasa.com.br/img/3916211/d4ca8f691389f3dfcbcf805ddcc21a9c.jpg",
       property_Id: propertyBase.id,
     },
   });
