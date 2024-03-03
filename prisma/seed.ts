@@ -132,7 +132,7 @@ async function seedProperty(userData: string) {
       rent_price: "500",
       cep: "12345678",
       neighborhood: "Centro",
-      street_name: "Rua",  
+      street_name: "Rua 1",
       street_number: "123",
       total_occupancy: 3,
       total_bedrooms: 3,
@@ -151,31 +151,31 @@ async function seedProperty(userData: string) {
   });
   await db.reviews.create({
     data: {
-      comment: "ótima casa, muito confortável e espaçosa!!!",
-      rating: 3,
+      comment: "Comentário 1",
+      rating: 4,
       property_Id: propertyBase.id,
-      user_name: "Júnior",
+      user_name: "Marllon",
       user_Id: propertyBase.user_Id,
     },
   });
   await db.reviews.create({
     data: {
-      comment: "Casa muito boa, pena que tem pouco espaço para estacionar.",
+      comment: "Comentário 2",
       rating: 5,
       property_Id: propertyBase.id,
-      user_name: "José",
+      user_name: "Marllon",
       user_Id: propertyBase.user_Id,
     },
   });
   await db.image.create({
     data: {
-      path: "https://www.matuetevillas.com/wp-content/uploads/2022/09/Aluguel-de-casas-de-luxo-Ceara%CC%81-Jericoacora-Villa-1-3-scaled.jpg",
+      path: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vivadecora.com.br%2Frevista%2Fdecoracao-de-casas-pequenas%2F&psig=AOvVaw0Z3Z2Z4Z2Z4Z2Z4Z2Z4Z2Z4&ust=1629786160000000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjQ4ZqHgvICFQAAAAAdAAAAABAD",
       property_Id: propertyBase.id,
     },
   });
   await db.image.create({
     data: {
-      path: "https://www.ceara.gov.br/wp-content/uploads/2021/08/210624_CASA-DE-CUIDADOS-CE_TS7884-1.jpg",
+      path: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vivadecora.com.br%2Frevista%2Fdecoracao-de-casas-pequenas%2F&psig=AOvVaw0Z3Z2Z4Z2Z4Z2Z4Z2Z4Z2Z4&ust=1629786160000000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjQ4ZqHgvICFQAAAAAdAAAAABAD",
       property_Id: propertyBase.id,
     },
   });
