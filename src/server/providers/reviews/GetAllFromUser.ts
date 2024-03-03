@@ -32,6 +32,7 @@ export const getAllFromUser = async (
     reviews: reviews.map((review) => ({
       id: review.id,
       user_Id: review.user_Id,
+      user_name: review.user_name,
       property_Id: review.property_Id,
       rating: review.rating,
       comment: review.comment,

@@ -31,6 +31,7 @@ export const updateById = async (
   return {
     review: {
       user_Id: result.user_Id,
+      user_name: result.user_name,
       property_Id: result.property_Id,
       rating: result.rating,
       comment: result.comment,
