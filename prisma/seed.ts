@@ -169,13 +169,13 @@ async function seedProperty(userData: string) {
   });
   await db.image.create({
     data: {
-      path: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vivadecora.com.br%2Frevista%2Fdecoracao-de-casas-pequenas%2F&psig=AOvVaw0Z3Z2Z4Z2Z4Z2Z4Z2Z4Z2Z4&ust=1629786160000000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjQ4ZqHgvICFQAAAAAdAAAAABAD",
+      path: "https://casa-caribe-do-nordeste-beberibe.ibooked.com.br/data/Photos/OriginalPhoto/10573/1057317/1057317757/Casa-Caribe-Do-Nordeste-Villa-Beberibe-Exterior.JPEG",
       property_Id: propertyBase.id,
     },
   });
   await db.image.create({
     data: {
-      path: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vivadecora.com.br%2Frevista%2Fdecoracao-de-casas-pequenas%2F&psig=AOvVaw0Z3Z2Z4Z2Z4Z2Z4Z2Z4Z2Z4&ust=1629786160000000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJjQ4ZqHgvICFQAAAAAdAAAAABAD",
+      path: "https://casa-caribe-do-nordeste-beberibe.ibooked.com.br/data/Photos/OriginalPhoto/10573/1057317/1057317757/Casa-Caribe-Do-Nordeste-Villa-Beberibe-Exterior.JPEG",
       property_Id: propertyBase.id,
     },
   });
