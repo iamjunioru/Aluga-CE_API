@@ -1,5 +1,5 @@
 export function formatPathToUploadsUrl(filePath: string): string {
-  const baseUrl = "http://localhost:8000"; // Substitua pela sua URL base
+  const baseUrl = "https://aluga-ce-api.vercel.app"; // Substitua pela sua URL base
   const parts = filePath.split("\\");
   const uploadsIndex = parts.findIndex(part => part === "uploads");
   
