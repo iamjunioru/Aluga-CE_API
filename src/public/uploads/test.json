@@ -1,0 +1,7 @@
+{
+    "name": "Crescent",
+    "description": "A small 2v2 map with a crescent shaped asteroid field in the middle.",
+    "creator": "Anonemous2",
+    "version": "1.0",
+    "players": [4, 4]
+}
