@@ -6,8 +6,8 @@ import path from "path";
 const server = express();
 
 // Configuração para servir arquivos estáticos da pasta de uploads
-// server.use(express.static(path.join(__dirname, "..", "public")));
-server.use("/public", express.static(path.join(__dirname, '..', 'public')));
+server.use(express.static(path.join(__dirname, "..", "public")));
+server.use("/uploads", express.static(path.join(__dirname, 'uploads')));
 
 
 import './shared/services/TranslationsYup';
